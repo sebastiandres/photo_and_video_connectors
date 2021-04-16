@@ -21,5 +21,6 @@ def update_frame(bbox):
         data: ??
     """
     print("Doing some pipelines yet. At update_frame")
-    data = eval_js(f"stream_frame('{bbox}')")
+    data = ""
+    #data = eval_js(f"stream_frame('{bbox}')")
     return data
