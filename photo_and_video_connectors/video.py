@@ -7,7 +7,7 @@ def setup_properties(video_type="", height=480, width=600):
     Starts the video stream ...    
     """
     # Get file path
-    cwd = os.path.dirname(__file__), ".")
+    cwd = os.path.dirname(__file__)
     # Dynamically declarate the global variables in javascript
     js_1 = f"var VIDEO_TYPE = '{video_type}';"
     js_2 = f"var HEIGHT = '{height}';"
