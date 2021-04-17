@@ -5,7 +5,10 @@ async function remove_choice_div() {
 }
 
 async function add_choice_div(input_type) {
-    /*  Adds the height and width inputs and choice buttons */
+    /*  
+    Adds the height and width inputs and choice buttons.
+    input_type can be "video" or "photo"
+    */
     // Div where to place everything
     const choice_div = document.createElement('div');
     choice_div.setAttribute("id", "choice_div")
@@ -15,14 +18,14 @@ async function add_choice_div(input_type) {
     choice_div.appendChild(width_text);
     var width_input = document.createElement("INPUT");
     width_input.setAttribute("type", "text");
-    width_input.setAttribute("value", "600");
+    width_input.setAttribute("value", WIDTH);
     width_input.setAttribute("size", "4");
     choice_div.appendChild(width_input);
     var height_text = document.createTextNode("  height ");
     choice_div.appendChild(height_text);
     var height_input = document.createElement("INPUT");
     height_input.setAttribute("type", "text");
-    height_input.setAttribute("value", "480");
+    height_input.setAttribute("value", HEIGHT);
     height_input.setAttribute("size", "4");
     choice_div.appendChild(height_input);
     var _br = document.createElement("br");
@@ -32,8 +35,12 @@ async function add_choice_div(input_type) {
     webcam_button.setAttribute("id", "webcam_button")
     webcam_button.textContent = 'Capture from Webcam';
     choice_div.appendChild(webcam_button);
-    function webcam_function(){alert(input_type + " " + height_input.value + " " + width_input.value)};
-    //function webcam_function(){stream_frame("Capturing", ""); }
+    function webcam_function(){
+        VIDEO_TYPE = "webcam";
+        WIDTH = width_input.value;
+        HEIGHT = height_input.value;
+        stream_frame("Capturing...", ""); 
+    }
     webcam_button.addEventListener("click", webcam_function);
     // Put screen button
     var _space1 = document.createTextNode("  ");
@@ -43,8 +50,12 @@ async function add_choice_div(input_type) {
     screen_button.setAttribute("id", "screen_button")
     screen_button.textContent = 'Capture from Screen';
     choice_div.appendChild(screen_button);
-    function screen_function(){alert(input_type + " " + height_input.value + " " + width_input.value)};
-    //function screen_function(){stream_frame("Capturing", ""); }
+    function screen_function(){
+        VIDEO_TYPE = "screen";
+        WIDTH = width_input.value;
+        HEIGHT = height_input.value;
+        stream_frame("Capturing...", ""); 
+    }
     screen_button.addEventListener("click", screen_function);
     var _space2 = document.createTextNode("  ");
     choice_div.appendChild(_space2);
@@ -53,7 +64,12 @@ async function add_choice_div(input_type) {
     upload_button.setAttribute("id", "upload_button")
     upload_button.textContent = 'Upload video';
     choice_div.appendChild(upload_button);
-    function upload_function(){alert(input_type + " " + height_input.value + " " + width_input.value)};
-    //function upload_function(){stream_frame("Capturing", ""); }
+    //function upload_function(){alert(input_type + " " + height_input.value + " " + width_input.value)};
+    function upload_function(){
+        VIDEO_TYPE = "upload";
+        WIDTH = width_input.value;
+        HEIGHT = height_input.value;
+        stream_frame("Capturing...", "");
+    }
     upload_button.addEventListener("click", upload_function);
 }

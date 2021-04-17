@@ -27,7 +27,7 @@ function onAnimationFrame() {
   if (pendingResolve) {
     var result = "";
     if (!shutdown) {
-      captureCanvas.getContext('2d').drawImage(video, 0, 0, 640, 480);
+      captureCanvas.getContext('2d').drawImage(video, 0, 0, WIDTH, HEIGHT);
       result = captureCanvas.toDataURL('image/jpeg', 0.8)
     }
     var lp = pendingResolve;
@@ -45,7 +45,7 @@ async function createDom() {
   div.style.border = '2px solid black';
   div.style.padding = '3px';
   div.style.width = '100%';
-  div.style.maxWidth = '600px';
+  div.style.maxWidth = parseInt(WIDTH) + 'px';
   document.body.appendChild(div);
   
   const modelOut = document.createElement('div');
@@ -61,8 +61,11 @@ async function createDom() {
   video.width = div.clientWidth - 6;
   video.setAttribute('playsinline', '');
   video.onclick = () => { shutdown = true; };
-  // stream = await navigator.mediaDevices.getUserMedia( {video: { facingMode: "environment"} });
-  stream = await navigator.mediaDevices.getDisplayMedia();
+
+  if (VIDEO_TYPE=="webcam")
+    {stream = await navigator.mediaDevices.getUserMedia( {video: { facingMode: "environment"} })}
+  else
+    {stream = await navigator.mediaDevices.getDisplayMedia()};
 
   div.appendChild(video);
 
@@ -83,8 +86,10 @@ async function createDom() {
   await video.play();
 
   captureCanvas = document.createElement('canvas');
-  captureCanvas.width = 640; //video.videoWidth;
-  captureCanvas.height = 480; //video.videoHeight;
+  //captureCanvas.width = 640; //video.videoWidth;
+  //captureCanvas.height = 480; //video.videoHeight;
+  captureCanvas.width = video.videoWidth;
+  captureCanvas.height = video.videoHeight;
   window.requestAnimationFrame(onAnimationFrame);
   
   return stream;
