@@ -12,7 +12,9 @@ async function add_choice_div(input_type) {
     // Div where to place everything
     const choice_div = document.createElement('div');
     choice_div.setAttribute("id", "choice_div")
-    document.body.appendChild(choice_div);
+    canvas_div = document.getElementById("canvas_div");
+    canvas_div.appendChild(choice_div);
+    //document.body.appendChild(choice_div);
     // Add height and width texts
     var width_text = document.createTextNode("Resolution: width ");
     choice_div.appendChild(width_text);

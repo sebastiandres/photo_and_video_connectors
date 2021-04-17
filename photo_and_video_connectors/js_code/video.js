@@ -1,3 +1,36 @@
+<script type = "text/JavaScript">
+var VIDEO_TYPE = "";
+var WIDTH = 1000;
+var HEIGHT = 800;
+</script>
+
+<div id="canvas_div">
+<b>Resolution</b>: width <input type="text" id="width_input" value="800" size="4">
+ height <input type="text" id="height_input" value="600" size="4">
+ <br>
+<b>Input</b>: <button id="webcam_button" onclick="webcam_function()">Webcam</button> 
+<button id="screen_button" onclick="screen_function()">Screen</button> 
+</div>
+
+<script type = "text/JavaScript">
+function webcam_function(){
+    VIDEO_TYPE = "webcam";
+    WIDTH = width_input.value;
+    HEIGHT = height_input.value;
+    stream_frame("Capturing...", ""); 
+}
+function screen_function(){
+    VIDEO_TYPE = "screen";
+    WIDTH = width_input.value;
+    HEIGHT = height_input.value;
+    stream_frame("Capturing...", "");
+}
+async function remove_choice_div() {
+    /*  Removes the height and width inputs and choice buttons */
+    choice_div = document.getElementById("choice_div");
+    choice_div.remove();
+}
+
 var video;
 var div = null;
 var stream;
@@ -46,8 +79,10 @@ async function createDom() {
   div.style.padding = '3px';
   div.style.width = '100%';
   div.style.maxWidth = parseInt(WIDTH) + 'px';
-  document.body.appendChild(div);
-  
+  //document.body.appendChild(div);
+  canvas_div = document.getElementById("canvas_div");
+  canvas_div.appendChild(div);
+
   const modelOut = document.createElement('div');
   modelOut.innerHTML = "<span>Status:</span>";
   labelElement = document.createElement('span');
@@ -134,3 +169,5 @@ async function stream_frame(label, imgData) {
           'capture': Date.now() - preCapture,
           'img': result};
 }
+    
+</script>
