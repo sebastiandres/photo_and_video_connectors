@@ -1,5 +1,6 @@
 # Library to configure this setup file
-from distutils.core import setup
+#from distutils.core import setup
+from setuptools import setup
 
 # Import the version of the the pypsdier
 from photo_and_video_connectors import version as current_version
