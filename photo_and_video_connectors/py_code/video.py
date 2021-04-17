@@ -1,7 +1,7 @@
 from IPython.display import display, Javascript
 #from google.colab.output import eval_js
 
-def setup_properties(video_type, height=480, width=600):
+def setup_properties(video_type="", height=480, width=600):
     """
     Starts the video stream ...    
     """
@@ -10,7 +10,7 @@ def setup_properties(video_type, height=480, width=600):
     #display(js)
     return
     
-def update_frame(bbox):
+def update_frame(bbox=""):
     """
     Updates the video frame that is displayed
     to the updated 
