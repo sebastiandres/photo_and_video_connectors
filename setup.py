@@ -19,4 +19,5 @@ setup(
     license='MIT',  ### May/May not change this. But if you change it, must also change LICENCE file
     description='Photo and video connectors for python.', ### Change here
     long_description=long_description,
+    include_package_data=True,
 )
