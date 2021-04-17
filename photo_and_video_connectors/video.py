@@ -7,7 +7,7 @@ try:
 except:
     eval_js_available = False
 
-def setup_properties(video_type="", height=480, width=600):
+def setup_properties(video_type="", width=600, height=480):
     """
     Starts the video stream ...    
     """
@@ -16,7 +16,7 @@ def setup_properties(video_type="", height=480, width=600):
     # Dynamically declarate the global variables in javascript
     with open(os.path.join(cwd, "js_code/video.html")) as fh:
         my_html_template = "".join(fh.readlines())
-    my_html = my_html_template.format(video_type, height, width)
+    my_html = my_html_template.format(video_type, width, height)
     # Save it for debug purposes
     with open(os.path.join(cwd, "js_code/video_result.html"), "r") as fh:
         fh.write(my_html)
