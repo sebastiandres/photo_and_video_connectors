@@ -105,16 +105,18 @@ async function stream_frame(label, imgData) {
   /*
   Updating the frame with the provided data 
   */
+  // Delete vars: preShow, preCreate, preCapture
+
   if (shutdown) {
     removeDom();
     shutdown = false;
     return '';
   }
 
-  var preCreate = Date.now();
+  //var preCreate = Date.now();
   stream = await createDom();
 
-  var preShow = Date.now();
+  //var preShow = Date.now();
   if (label != '') {
     labelElement.innerHTML = label;
   }
@@ -128,14 +130,11 @@ async function stream_frame(label, imgData) {
     imgElement.src = imgData;
   }
 
-  var preCapture = Date.now();
+  //var preCapture = Date.now();
   var result = await new Promise(function(resolve, reject) {
     pendingResolve = resolve;
   });
   shutdown = false;
 
-  return {'create': preShow - preCreate, 
-          'show': preCapture - preShow, 
-          'capture': Date.now() - preCapture,
-          'img': result};
+  return result;
 }
