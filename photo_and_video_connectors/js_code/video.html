@@ -1,36 +1,38 @@
-<script type = "text/JavaScript">
-  var VIDEO_TYPE = '{}';
-  var WIDTH = '{}';
-  var HEIGHT = '{}';
+<script type = 'text/JavaScript'>
+  var VIDEO_TYPE = 'DEFAULT_VIDEO_TYPE';
+  var WIDTH = 'DEFAULT_WIDTH'
+  var HEIGHT = 'DEFAULT_HEIGHT';
 </script>
   
-<div id="canvas_div">
-  <b>Resolution</b>: width <input type="text" id="width_input" value="800" size="4">
-   height <input type="text" id="height_input" value="600" size="4">
-   <br>
-  <b>Input</b>: <button id="webcam_button" onclick="webcam_function()">Webcam</button> 
-  <button id="screen_button" onclick="screen_function()">Screen</button> 
+<div id='canvas_div'>
+  <div id="choice_div">    
+    <b>Resolution</b>: width <input type='text' id='width_input' value='800' size='4'>
+    height <input type='text' id='height_input' value='600' size='4'>
+    <br>
+    <b>Input</b>: <button id='webcam_button' onclick='webcam_function()'>Webcam</button> 
+    <button id='screen_button' onclick='screen_function()'>Screen</button> 
+  </div>
 </div>
   
-<script type = "text/JavaScript">
+<script type = 'text/JavaScript'>
 
   function webcam_function(){
-      //VIDEO_TYPE = "webcam";
-      //WIDTH = width_input.value;
-      //HEIGHT = height_input.value;
-      stream_frame("Capturing...", ""); 
+      VIDEO_TYPE = 'webcam';
+      WIDTH = width_input.value;
+      HEIGHT = height_input.value;
+      stream_frame('Capturing...', ''); 
   }
 
   function screen_function(){
-      //VIDEO_TYPE = "screen";
-      //WIDTH = width_input.value;
-      //HEIGHT = height_input.value;
-      stream_frame("Capturing...", "");
+      VIDEO_TYPE = 'screen';
+      WIDTH = width_input.value;
+      HEIGHT = height_input.value;
+      stream_frame('Capturing...', '');
   }
   
   async function remove_choice_div() {
       /*  Removes the height and width inputs and choice buttons */
-      choice_div = document.getElementById("choice_div");
+      choice_div = document.getElementById('choice_div');
       choice_div.remove();
   }
   
@@ -61,7 +63,7 @@
       window.requestAnimationFrame(onAnimationFrame);
     }
     if (pendingResolve) {
-      var result = "";
+      var result = '';
       if (!shutdown) {
         captureCanvas.getContext('2d').drawImage(video, 0, 0, WIDTH, HEIGHT);
         result = captureCanvas.toDataURL('image/jpeg', 0.8)
@@ -83,11 +85,11 @@
     div.style.width = '100%';
     div.style.maxWidth = parseInt(WIDTH) + 'px';
     //document.body.appendChild(div);
-    canvas_div = document.getElementById("canvas_div");
+    canvas_div = document.getElementById('canvas_div');
     canvas_div.appendChild(div);
   
     const modelOut = document.createElement('div');
-    modelOut.innerHTML = "<span>Status:</span>";
+    modelOut.innerHTML = '<span>Status:</span>';
     labelElement = document.createElement('span');
     labelElement.innerText = 'No data';
     labelElement.style.fontWeight = 'bold';
@@ -100,8 +102,8 @@
     video.setAttribute('playsinline', '');
     video.onclick = () => { shutdown = true; };
   
-    if (VIDEO_TYPE=="webcam")
-      {stream = await navigator.mediaDevices.getUserMedia( {video: { facingMode: "environment"} })}
+    if (VIDEO_TYPE=='webcam')
+      {stream = await navigator.mediaDevices.getUserMedia( {video: { facingMode: 'environment'} })}
     else
       {stream = await navigator.mediaDevices.getDisplayMedia()};
   
@@ -114,9 +116,7 @@
     div.appendChild(imgElement);
     
     const instruction = document.createElement('div');
-    instruction.innerHTML = 
-        '<span style="color: red; font-weight: bold;">' +
-        'When finished, click here or on the video to stop this demo</span>';
+    instruction.innerHTML = 'Click here or on the video to stop';
     div.appendChild(instruction);
     instruction.onclick = () => { shutdown = true; };
     
@@ -148,16 +148,16 @@
     stream = await createDom();
     
     var preShow = Date.now();
-    if (label != "") {
+    if (label != '') {
       labelElement.innerHTML = label;
     }
           
-    if (imgData != "") {
+    if (imgData != '') {
       var videoRect = video.getClientRects()[0];
-      imgElement.style.top = videoRect.top + "px";
-      imgElement.style.left = videoRect.left + "px";
-      imgElement.style.width = videoRect.width + "px";
-      imgElement.style.height = videoRect.height + "px";
+      imgElement.style.top = videoRect.top + 'px';
+      imgElement.style.left = videoRect.left + 'px';
+      imgElement.style.width = videoRect.width + 'px';
+      imgElement.style.height = videoRect.height + 'px';
       imgElement.src = imgData;
     }
     
