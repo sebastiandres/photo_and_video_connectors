@@ -1,4 +1,5 @@
 from IPython.display import HTML
+from IPython.display import Javascript, display
 import os
 try: 
     # Use google's version to evaluate javascript
@@ -23,6 +24,10 @@ def setup_properties(video_type="", width=600, height=480):
                 }
     for key, val in swap_dict.items():
         my_html = my_html.replace(key, val)
+    # Load the javascript
+    with open(os.path.join(cwd, "js_code/video.js")) as fh:
+        my_js = "".join(fh.readlines())
+    display(Javascript(my_js))
     return HTML(my_html)
     
 def update_frame(bbox=""):
