@@ -3,3 +3,4 @@ include LICENSE
 include requirements.txt
 include setup.cfg
 include photo_and_video_connectors/js_code/*.js
+include photo_and_video_connectors/js_code/*.html
