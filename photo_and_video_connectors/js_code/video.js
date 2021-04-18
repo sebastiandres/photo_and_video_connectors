@@ -33,9 +33,9 @@ function onAnimationFrame() {
   if (pendingResolve) {
     var result = '';
     if (!shutdown) {
-      WIDTH = 800; //parseInt(document.getElementById('width_input').value);
-      HEIGHT = 600;  //parseInt(document.getElementById('height_input').value);
-      captureCanvas.getContext('2d').drawImage(video, 0, 0, WIDTH, HEIGHT);
+      //WIDTH = 800; //parseInt(document.getElementById('width_input').value);
+      //HEIGHT = 600;  //parseInt(document.getElementById('height_input').value);
+      captureCanvas.getContext('2d').drawImage(video, 0, 0, 800, 600);
       result = captureCanvas.toDataURL('image/jpeg', 0.8)
     }
     var lp = pendingResolve;
@@ -53,8 +53,8 @@ async function createDom() {
   div.style.border = '2px solid black';
   div.style.padding = '3px';
   div.style.width = '100%';
-  WIDTH = 800;//parseInt(document.getElementById('width_input').value);
-  div.style.maxWidth = parseInt(WIDTH) + 'px';
+  // WIDTH = "800";//parseInt(document.getElementById('width_input').value);
+  div.style.maxWidth = '800px';
   canvas_div = document.getElementById('canvas_div');
   canvas_div.appendChild(div);
 
