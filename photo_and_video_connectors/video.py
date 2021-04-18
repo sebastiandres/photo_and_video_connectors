@@ -41,10 +41,10 @@ def update_frame(bbox=""):
         data: ??
     """
     if eval_js_available:
-        data = eval_js(f"stream_frame('{bbox}')")
+        data = eval_js(f"stream_frame('Capturing', '{bbox}')")
     else:
         js_wrapper = f"""
-        data_value = stream_frame('{bbox}')
+        data_value = stream_frame('Capturing', '{bbox}')
         var command = "data = " + "'" + data_value + "'"  
         var kernel = IPython.notebook.kernel;
         kernel.execute(command);

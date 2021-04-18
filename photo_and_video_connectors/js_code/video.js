@@ -101,11 +101,10 @@ async function createDom() {
   return stream;
 }
 
-async function stream_frame(imgData) {
+async function stream_frame(label, imgData) {
   /*
   Updating the frame with the provided data 
   */
-  var label = "Capturing";
   if (shutdown) {
     removeDom();
     shutdown = false;
