@@ -17,16 +17,16 @@
 <script type = 'text/JavaScript'>
   function webcam_function(){
       VIDEO_TYPE = 'webcam';
-      WIDTH = width_input.value;
-      HEIGHT = height_input.value;
+      WIDTH = 800;//width_input.value;
+      HEIGHT = 600;//height_input.value;
       //remove_choice_div(); // IF WE REMOVE IT, WE LOOSE THE VALUES
       stream_frame('Capturing from webcam', ''); 
   }
 
   function screen_function(){
       VIDEO_TYPE = 'screen';
-      WIDTH = width_input.value;
-      HEIGHT = height_input.value;
+      WIDTH = 800;//width_input.value;
+      HEIGHT = 600; //height_input.value;
       //remove_choice_div();
       stream_frame('Capturing from screen', '');
   }
