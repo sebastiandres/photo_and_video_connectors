@@ -16,7 +16,7 @@ def setup_properties(video_type="", width=600, height=480):
     # Dynamically declarate the global variables in javascript
     with open(os.path.join(cwd, "js_code/video.html")) as fh:
         my_html = "".join(fh.readlines())
-    from IPython import embed; embed()
+    #from IPython import embed; embed()
     # Change values
     swap_dict = {'DEFAULT_VIDEO_TYPE':video_type,
                  'DEFAULT_WIDTH':str(width),
